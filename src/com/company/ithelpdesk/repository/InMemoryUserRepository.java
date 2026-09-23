@@ -51,4 +51,28 @@ public class InMemoryUserRepository implements UserRepository{
 
         return false;
     }
+
+    @Override
+    public User activateUser(long userId) {
+        if(userId <= 0) return null;
+
+        User user = findUserById(userId);
+
+        if(user == null) return null;
+
+        user.setActive(true);
+        return user;
+    }
+
+    @Override
+    public User deactivateUser(long userId) {
+        if(userId <= 0) return null;
+
+        User user = findUserById(userId);
+
+        if(user ==  null) return null;
+
+        user.setActive(false);
+        return user;
+    }
 }

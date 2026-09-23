@@ -15,4 +15,8 @@ public interface UserRepository {
     boolean userIdExists(long userId);
 
     boolean userEmailExists(String email);
+
+    User activateUser(long userId);
+
+    User deactivateUser(long userId);
 }
