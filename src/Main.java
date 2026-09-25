@@ -8,6 +8,7 @@ import com.company.ithelpdesk.repository.UserRepository;
 import com.company.ithelpdesk.service.UserService;
 import com.company.ithelpdesk.service.UserServiceImpl;
 
+import java.util.List;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -97,12 +98,40 @@ public class Main {
                     user.displayProfile();
                     break;
                 case 4:
+                    List<User> users = userService.listAllUsers();
+                    for(User u : users){
+                        u.displayProfile();
+                    }
                     break;
                 case 5:
+                    System.out.println("Enter user id to find :");
+                    id = scanner.nextLong();
+                    user = userService.findByUserID(id);
+                    if(user == null) {
+                        System.out.println("User not found");
+                        break;
+                    }
+                    user.displayProfile();
                     break;
                 case 6:
+                    System.out.println("Enter user id to activate :");
+                    id = scanner.nextLong();
+                    user = userService.activateUser(id);
+                    if(user == null) {
+                        System.out.println("User not found");
+                        break;
+                    }
+                    user.displayProfile();
                     break;
                 case 7:
+                    System.out.println("Enter user id to deactivate :");
+                    id = scanner.nextLong();
+                    user = userService.deactivateUser(id);
+                    if(user == null) {
+                        System.out.println("User not found");
+                        break;
+                    }
+                    user.displayProfile();
                     break;
                 default:
                     System.out.println("It is invalid Option");
